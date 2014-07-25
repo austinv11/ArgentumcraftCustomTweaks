@@ -15,5 +15,7 @@ main: com.enjin.argentumcraft.ArgentumcraftCustomTweaks.ArgentumcraftCustomTweak
 permissions:
    ArgentumcraftCustomTweaks.*:
         description: Gives access to all ArgentumcraftCustomTweaks permissions
+   ArgentumcraftCustomTweaks.easterEggSignAbility:
+        description: Gives the ability to create an easter egg sign
 #   ArgentumcraftCustomTweaks.opengui:
 #      description: Opens the example gui
