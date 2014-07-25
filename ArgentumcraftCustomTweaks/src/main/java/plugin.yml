@@ -14,9 +14,9 @@ commands:
 
 permissions:
    ArgentumcraftCustomTweaks.*:
-        description: Gives access to all ArgentumcraftCustomTweaks permissions
+      description: Gives access to all ArgentumcraftCustomTweaks permissions
    ArgentumcraftCustomTweaks.easterEggSignAbility:
-        description: Gives the ability to create an easter egg sign
+      description: Gives the ability to create an easter egg sign
    ArgentumcraftCustomTweaks.giveFreezeItem:
       description: Gives the sender an item used to freeze things
    ArgentumcraftCustomTweaks.freezeBypass:
