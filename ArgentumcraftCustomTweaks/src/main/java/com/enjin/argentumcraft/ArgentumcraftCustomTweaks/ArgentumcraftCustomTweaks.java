@@ -18,6 +18,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import com.enjin.argentumcraft.Listeners.FreezeItemHandler;
 import com.enjin.argentumcraft.Listeners.SignClickHandler;
 
 public class ArgentumcraftCustomTweaks extends JavaPlugin{
@@ -35,6 +36,7 @@ public class ArgentumcraftCustomTweaks extends JavaPlugin{
 	freezeItem.setItemMeta(im);
 	new Resources(config, new File(getDataFolder(), "EasterEggTracker.yml"), this, economy, freezeItem, new File(getDataFolder(), "FreezeTracker.yml"));
 	new SignClickHandler();
+	new FreezeItemHandler();
 	}
 	
 	@Override

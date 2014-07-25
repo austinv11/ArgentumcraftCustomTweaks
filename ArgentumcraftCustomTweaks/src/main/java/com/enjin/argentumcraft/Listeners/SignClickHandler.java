@@ -2,10 +2,8 @@ package com.enjin.argentumcraft.Listeners;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.block.SignChangeEvent;
 import org.bukkit.block.Sign;
@@ -20,17 +18,20 @@ public class SignClickHandler implements Listener{
 	
 	@EventHandler
 	public void onRightClick(PlayerInteractEvent event){
-		if (!event.isCancelled()){
+		//if (!event.isCancelled()){
 			//if (event.getAction() == Action.RIGHT_CLICK_BLOCK || ){
 				if (event.hasBlock()){
-					if (event.getClickedBlock().getType() == Material.SIGN || event.getClickedBlock().getType() == Material.SIGN_POST){
+					if (event.getClickedBlock().getState() instanceof Sign){
 						Sign sign = (Sign) event.getClickedBlock().getState();
 						if (sign.getLine(0).contains("["+Resources.config.getString("Options.requiredSignText")+"]")){
-							if (!Resources.listFileConfig.contains(event.getPlayer().getName())){
+							int x = event.getClickedBlock().getX();
+							int y = event.getClickedBlock().getY();
+							int z = event.getClickedBlock().getZ();
+							if (Resources.listFileConfig.contains(event.getPlayer().getName()+x+"."+y+"."+z)){
 								String amount = sign.getLine(1);
 								Resources.economy.depositPlayer(event.getPlayer(), Double.parseDouble(amount));
 								event.getPlayer().sendMessage(Resources.config.getString("Options.easterEggSuccessMessage").replaceAll("%_AMOUNT_%", amount));
-								Resources.listFileConfig.addDefault(event.getPlayer().getName(), true);
+								Resources.listFileConfig.addDefault(event.getPlayer().getName()+x+"."+y+"."+z, true);
 							}else{
 								event.getPlayer().sendMessage(Resources.config.getString("Options.easterEggFailureMessage"));
 							}
@@ -38,7 +39,7 @@ public class SignClickHandler implements Listener{
 					}
 				}
 		//	}
-		}
+		//}
 	}
 	
 	@EventHandler
