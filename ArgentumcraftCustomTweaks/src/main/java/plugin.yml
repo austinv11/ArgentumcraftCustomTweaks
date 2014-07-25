@@ -17,5 +17,7 @@ permissions:
         description: Gives access to all ArgentumcraftCustomTweaks permissions
    ArgentumcraftCustomTweaks.easterEggSignAbility:
         description: Gives the ability to create an easter egg sign
-   ArgentumcraftCustomTweaks.givefreezeitem:
+   ArgentumcraftCustomTweaks.giveFreezeItem:
       description: Gives the sender an item used to freeze things
+   ArgentumcraftCustomTweaks.freezeBypass:
+      description: Determines whether the player can bypass the frozen effect

@@ -43,11 +43,12 @@ public class ArgentumcraftCustomTweaks extends JavaPlugin{
 	public void onDisable(){}
 	
 	private void configInit(){
-		config.addDefault("Options.requiredSignText","Easter Egg");
-		config.addDefault("Options.easterEggSuccessMessage", "You gained $%_AMOUNT_% for finding this Easter Egg!");
-		config.addDefault("Options.easterEggFailureMessage", "You already found this Easter Egg!");
-		config.addDefault("Options.easterEggPlaceSuccessMessage", "Successfully made an easter egg sign that gives $%_AMOUNT_%");
-		config.addDefault("Options.easterEggPlaceFailureMessage", "Sorry %_PLAYER_%, you either don't have the correct permissions or you made an error with the formatting");
+		config.addDefault("Options.requiredSignText","&bEasterEgg");
+		config.addDefault("Options.easterEggSuccessMessage", "&aYou gained &3$%_AMOUNT_% &afor finding this Easter Egg!");
+		config.addDefault("Options.easterEggFailureMessage", "&aYou already found this Easter Egg!");
+		config.addDefault("Options.easterEggPlaceSuccessMessage", "&aSuccessfully made an easter egg sign that gives &3$%_AMOUNT_%");
+		config.addDefault("Options.easterEggPlaceFailureMessage", "&cSorry %_PLAYER_%&c, you either don't have the correct permissions or you made an error with the formatting");
+		saveConfig();
 	}
 	
 	private boolean setupEconomy(){

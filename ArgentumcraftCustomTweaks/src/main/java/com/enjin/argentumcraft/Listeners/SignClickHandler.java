@@ -30,10 +30,10 @@ public class SignClickHandler implements Listener{
 							if (Resources.listFileConfig.contains(event.getPlayer().getName()+x+"."+y+"."+z)){
 								String amount = sign.getLine(1);
 								Resources.economy.depositPlayer(event.getPlayer(), Double.parseDouble(amount));
-								event.getPlayer().sendMessage(Resources.config.getString("Options.easterEggSuccessMessage").replaceAll("%_AMOUNT_%", amount));
+								event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&',Resources.config.getString("Options.easterEggSuccessMessage").replaceAll("%_AMOUNT_%", amount)));
 								Resources.listFileConfig.addDefault(event.getPlayer().getName()+x+"."+y+"."+z, true);
 							}else{
-								event.getPlayer().sendMessage(Resources.config.getString("Options.easterEggFailureMessage"));
+								event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&',Resources.config.getString("Options.easterEggFailureMessage")));
 							}
 						}
 					}
@@ -45,16 +45,17 @@ public class SignClickHandler implements Listener{
 	@EventHandler
 	public void onSignChange(SignChangeEvent event){
 		if (!event.isCancelled()){
-			if (event.getLine(0).contains("["+Resources.config.getString("Options.requiredSignText")+"]")){
+			if (event.getLine(0).contains("["+ChatColor.translateAlternateColorCodes('&',Resources.config.getString("Options.requiredSignText"))+"]")){
 				if (event.getPlayer().hasPermission("ArgentumcraftCustomTweaks.easterEggSignAbility")){
 					try{
 						Double.parseDouble(event.getLine(1));
-						event.getPlayer().sendMessage(Resources.config.getString("Options.easterEggPlaceSuccessMessage").replaceAll("%_AMOUNT_%", event.getLine(1)));
+						event.setLine(0, "["+ChatColor.translateAlternateColorCodes('&',Resources.config.getString("Options.requiredSignText"))+ChatColor.RESET+"]");
+						event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&',Resources.config.getString("Options.easterEggPlaceSuccessMessage").replaceAll("%_AMOUNT_%", event.getLine(1))));
 					}catch (Exception e){
-						event.getPlayer().sendMessage(ChatColor.RED+Resources.config.getString("Options.easterEggPlaceFailureMessage").replaceAll("%_PLAYER_%", event.getPlayer().getName()));
+						event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&',Resources.config.getString("Options.easterEggPlaceFailureMessage").replaceAll("%_PLAYER_%", event.getPlayer().getName())));
 					}
 				}else{
-					event.getPlayer().sendMessage(ChatColor.RED+Resources.config.getString("Options.easterEggPlaceFailureMessage").replaceAll("%_PLAYER_%", event.getPlayer().getName()));
+					event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&',Resources.config.getString("Options.easterEggPlaceFailureMessage").replaceAll("%_PLAYER_%", event.getPlayer().getName())));
 					event.setCancelled(true);
 				}
 			}

@@ -2,7 +2,10 @@ package com.enjin.argentumcraft.Listeners;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.World;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,6 +17,8 @@ import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitTask;
 
 import com.enjin.argentumcraft.ArgentumcraftCustomTweaks.FreezerRunnable;
@@ -23,6 +28,7 @@ public class FreezeItemHandler implements Listener{
 	
 	public FreezeItemHandler(){
 		Bukkit.getPluginManager().registerEvents(this, Resources.instance);
+		initFreeze();
 	}
 	
 	@EventHandler
@@ -74,7 +80,10 @@ public class FreezeItemHandler implements Listener{
 						event.setCancelled(true);
 						int damaged = event.getEntity().getEntityId();
 						if (event.getEntity().getType() == EntityType.PLAYER){
-							setFrozen(damaged, !isFrozen(damaged), (Player) event.getEntity());
+							Player p = (Player) event.getEntity();
+							if (!p.hasPermission("ArgentumcraftCustomTweaks.freezeBypass")){
+								setFrozen(damaged, !isFrozen(damaged), (Player) event.getEntity());
+							}
 						}else{
 							setFrozen(damaged, !isFrozen(damaged));
 							if (isFrozen(damaged)){
@@ -82,6 +91,8 @@ public class FreezeItemHandler implements Listener{
 							}
 						}
 						if (isFrozen(damaged)){
+							LivingEntity lE = (LivingEntity) event.getEntity();
+							lE.addPotionEffect(new PotionEffect(PotionEffectType.SLOW, 2000000000, 10));
 							player.sendMessage(ChatColor.AQUA+"The entity has just been frozen!");
 						}else{
 							player.sendMessage(ChatColor.RED+"The entity has just been thawed!");
@@ -117,13 +128,33 @@ public class FreezeItemHandler implements Listener{
 		}else{
 			player.sendMessage(ChatColor.RED+"You have just been thawed!");
 		}
+		try{
+			Resources.freezeFileConfig.save(Resources.freezeFile);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	
 	public static void setFrozen(int id, boolean frozen){
 		Resources.freezeFileConfig.set(id+"", frozen);
+		try{
+			Resources.freezeFileConfig.save(Resources.freezeFile);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 	
 	public static boolean isFrozen(int id){
 		return Resources.freezeFileConfig.getBoolean(id+"");
+	}
+	
+	private void initFreeze(){
+		for (World w: Bukkit.getWorlds()){
+			for (Entity e : w.getEntities()){
+				if (isFrozen(e.getEntityId())){
+					BukkitTask task = new FreezerRunnable(e.getEntityId(), e.getLocation().clone()).runTaskTimer(Resources.instance,0,1);
+				}
+			}
+		}
 	}
 }
