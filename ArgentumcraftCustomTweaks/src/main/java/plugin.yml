@@ -1,0 +1,19 @@
+name: ArgentumcraftCustomTweaks
+version: 1.0.0
+description: A collection of simple tweaks for the Argentumcraft server
+author: austinv11
+website: argentumcraft.enjin.com
+ 
+main: com.enjin.argentumcraft.ArgentumcraftCustomTweaks.ArgentumcraftCustomTweaks
+commands:
+   opengui:
+      description: Opens the example gui
+      usage: /<command>
+      permission: ArgentumcraftCustomTweaks.opengui
+      permission-message: You don't have permission
+
+permissions:
+   ArgentumcraftCustomTweaks.*:
+        description: Gives access to all GUIAPI permissions
+   ArgentumcraftCustomTweaks.opengui:
+      description: Opens the example gui
