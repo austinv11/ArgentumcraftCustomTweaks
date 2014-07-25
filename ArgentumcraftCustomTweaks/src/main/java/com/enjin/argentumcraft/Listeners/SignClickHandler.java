@@ -21,7 +21,7 @@ public class SignClickHandler implements Listener{
 	@EventHandler
 	public void onRightClick(PlayerInteractEvent event){
 		if (!event.isCancelled()){
-			if (event.getAction() == Action.RIGHT_CLICK_BLOCK){
+			//if (event.getAction() == Action.RIGHT_CLICK_BLOCK || ){
 				if (event.hasBlock()){
 					if (event.getClickedBlock().getType() == Material.SIGN || event.getClickedBlock().getType() == Material.SIGN_POST){
 						Sign sign = (Sign) event.getClickedBlock().getState();
@@ -37,7 +37,7 @@ public class SignClickHandler implements Listener{
 						}
 					}
 				}
-			}
+		//	}
 		}
 	}
 	

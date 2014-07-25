@@ -29,16 +29,11 @@ public class ArgentumcraftCustomTweaks extends JavaPlugin{
 	public void onEnable(){
 	configInit();
 	setupEconomy();
-	List<String> lore = new ArrayList<String>();
-	lore.add("It's cold to the touch.");
-	lore.add("You wonder what'll happen if you");
-	lore.add("hit something with it...");
 	ItemStack freezeItem = new ItemStack(Material.SNOW_BALL);
 	ItemMeta im = freezeItem.getItemMeta();
 	im.setDisplayName(ChatColor.AQUA+"Freezeball");
-	im.setLore(Resources.freezeItemLore);
 	freezeItem.setItemMeta(im);
-	new Resources(config, new File(getDataFolder(), "EasterEggTracker.yml"), this, economy, lore, freezeItem, new File(getDataFolder(), "FreezeTracker.yml"));
+	new Resources(config, new File(getDataFolder(), "EasterEggTracker.yml"), this, economy, freezeItem, new File(getDataFolder(), "FreezeTracker.yml"));
 	new SignClickHandler();
 	}
 	

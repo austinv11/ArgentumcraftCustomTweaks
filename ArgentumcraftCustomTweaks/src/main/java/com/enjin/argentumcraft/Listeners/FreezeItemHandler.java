@@ -64,11 +64,14 @@ public class FreezeItemHandler implements Listener{
 	
 	@EventHandler
 	public void onDamage(EntityDamageByEntityEvent event){
-		if (!event.isCancelled()){
+		//if (!event.isCancelled()){
 			if (event.getCause() == DamageCause.ENTITY_ATTACK){
+				Bukkit.getLogger().info("Entity attack");//
 				if (event.getDamager().getType() == EntityType.PLAYER){
+					Bukkit.getLogger().info("player attack");
 					Player player = (Player) event.getDamager();
 					if (player.getItemInHand().isSimilar(Resources.freezeItem)){
+						Bukkit.getLogger().info("is similar");
 						event.setCancelled(true);
 						int damaged = event.getEntity().getEntityId();
 						if (event.getEntity().getType() == EntityType.PLAYER){
@@ -87,7 +90,7 @@ public class FreezeItemHandler implements Listener{
 					}
 				}
 			}
-		}
+		//}
 	}
 	
 	@EventHandler
