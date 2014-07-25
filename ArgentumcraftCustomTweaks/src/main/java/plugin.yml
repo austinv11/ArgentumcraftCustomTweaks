@@ -5,17 +5,17 @@ author: austinv11
 website: argentumcraft.enjin.com
  
 main: com.enjin.argentumcraft.ArgentumcraftCustomTweaks.ArgentumcraftCustomTweaks
-#commands:
-#   opengui:
-#      description: Opens the example gui
-#      usage: /<command>
-#      permission: ArgentumcraftCustomTweaks.opengui
-#      permission-message: You don't have permission
+commands:
+   givefreezeitem:
+      description: Gives the sender an item used to freeze things
+      usage: /<command> <optional:player>
+      permission: ArgentumcraftCustomTweaks.givefreezeitem
+      permission-message: You don't have permission
 
 permissions:
    ArgentumcraftCustomTweaks.*:
         description: Gives access to all ArgentumcraftCustomTweaks permissions
    ArgentumcraftCustomTweaks.easterEggSignAbility:
         description: Gives the ability to create an easter egg sign
-#   ArgentumcraftCustomTweaks.opengui:
-#      description: Opens the example gui
+   ArgentumcraftCustomTweaks.givefreezeitem:
+      description: Gives the sender an item used to freeze things
