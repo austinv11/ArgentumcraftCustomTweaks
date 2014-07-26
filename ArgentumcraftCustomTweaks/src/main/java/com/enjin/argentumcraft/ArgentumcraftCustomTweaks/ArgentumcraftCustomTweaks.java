@@ -48,6 +48,7 @@ public class ArgentumcraftCustomTweaks extends JavaPlugin{
 		config.addDefault("Options.easterEggFailureMessage", "&aYou already found this Easter Egg!");
 		config.addDefault("Options.easterEggPlaceSuccessMessage", "&aSuccessfully made an easter egg sign that gives &3$%_AMOUNT_%");
 		config.addDefault("Options.easterEggPlaceFailureMessage", "&cSorry %_PLAYER_%&c, you either don't have the correct permissions or you made an error with the formatting");
+		config.options().copyDefaults(true);
 		saveConfig();
 	}
 	
