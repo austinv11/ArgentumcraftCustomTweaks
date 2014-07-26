@@ -1,5 +1,7 @@
 package com.enjin.argentumcraft.Listeners;
 
+import java.io.File;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
@@ -15,6 +17,7 @@ import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.potion.PotionEffect;
@@ -28,7 +31,13 @@ public class FreezeItemHandler implements Listener{
 	
 	public FreezeItemHandler(){
 		Bukkit.getPluginManager().registerEvents(this, Resources.instance);
-		initFreeze();
+	}
+	
+	@EventHandler
+	public void test(PlayerInteractEntityEvent event){
+		if (event.getPlayer().getItemInHand().isSimilar(Resources.freezeItem)){
+			event.getPlayer().sendMessage(event.getRightClicked().getEntityId()+"");
+		}
 	}
 	
 	@EventHandler
@@ -146,15 +155,5 @@ public class FreezeItemHandler implements Listener{
 	
 	public static boolean isFrozen(int id){
 		return Resources.freezeFileConfig.getBoolean(id+"");
-	}
-	
-	private void initFreeze(){
-		for (World w: Bukkit.getWorlds()){
-			for (Entity e : w.getEntities()){
-				if (isFrozen(e.getEntityId())){
-					BukkitTask task = new FreezerRunnable(e.getEntityId(), e.getLocation().clone()).runTaskTimer(Resources.instance,0,1);
-				}
-			}
-		}
 	}
 }
