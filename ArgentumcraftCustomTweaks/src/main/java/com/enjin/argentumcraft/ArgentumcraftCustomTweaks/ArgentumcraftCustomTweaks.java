@@ -1,27 +1,22 @@
 package com.enjin.argentumcraft.ArgentumcraftCustomTweaks;
 
 import java.io.File;
-import java.util.Random;
-import java.util.UUID;
+import java.util.ArrayList;
+import java.util.List;
 
 import net.milkbowl.vault.economy.Economy;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Entity;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitTask;
 
 import com.enjin.argentumcraft.Listeners.FreezeItemHandler;
 import com.enjin.argentumcraft.Listeners.SignClickHandler;
@@ -33,60 +28,22 @@ public class ArgentumcraftCustomTweaks extends JavaPlugin{
 	
 	@Override
 	public void onEnable(){
-		configInit();
-		setupEconomy();
-		ItemStack freezeItem = new ItemStack(Material.SNOW_BALL);
-		ItemMeta im = freezeItem.getItemMeta();
-		im.setDisplayName(ChatColor.AQUA+"Freezeball");
-		freezeItem.setItemMeta(im);
-		new Resources(config, new File(getDataFolder(), "EasterEggTracker.yml"), this, economy, freezeItem, new File(getDataFolder(), "FreezeTracker.yml"));
-		new SignClickHandler();
-		new FreezeItemHandler();
-		File tempFile = new File(getDataFolder(), "temp.yml");
-		FileConfiguration temp = YamlConfiguration.loadConfiguration(tempFile);
-		for (World w: Bukkit.getWorlds()){
-			for (Entity e : w.getEntities()){
-				LivingEntity tempEnt = (LivingEntity) e;
-				if (temp.contains("%"+tempEnt.getCustomName()+"%")){
-					if (temp.getString("%"+tempEnt.getCustomName()+"%") == "%NULL%"){
-						tempEnt.setCustomName("");
-					}else{
-						tempEnt.setCustomName(temp.getString("%"+tempEnt.getCustomName()+"%"));
-					}
-					FreezeItemHandler.setFrozen(e.getEntityId(), true);
-					BukkitTask task = new FreezerRunnable(e.getEntityId(), e.getLocation().clone()).runTaskTimer(Resources.instance,0,1);
-				}
-			}
-		}
-		tempFile.delete();
+	configInit();
+	setupEconomy();
+	ItemStack freezeItem = new ItemStack(Material.SNOW_BALL);
+	ItemMeta im = freezeItem.getItemMeta();
+	im.setDisplayName(ChatColor.AQUA+"Freezeball");
+	freezeItem.setItemMeta(im);
+	new Resources(config, new File(getDataFolder(), "EasterEggTracker.yml"), this, economy, freezeItem, new File(getDataFolder(), "FreezeTracker.yml"));
+	new SignClickHandler();
+	new FreezeItemHandler();
 	}
 	
 	@Override
-	public void onDisable(){
-		Random r = new Random();
-		for (World w: Bukkit.getWorlds()){
-			for (Entity e : w.getEntities()){
-				if (FreezeItemHandler.isFrozen(e.getEntityId())){
-					int tempInt = r.nextInt();
-					FileConfiguration temp = YamlConfiguration.loadConfiguration(new File(getDataFolder(), "temp.yml"));
-					while (temp.contains(tempInt+"")){
-						tempInt = r.nextInt();
-					}
-					LivingEntity tempEnt = (LivingEntity) e;
-					if (tempEnt.getCustomName() == null){
-						temp.set("%"+tempInt+"%", "%NULL%");
-					}else{
-						temp.set("%"+tempInt+"%", tempEnt.getCustomName());
-					}
-					tempEnt.setCustomName(tempInt+"");
-				}
-			}
-		}
-		Resources.freezeFile.delete();
-	}
+	public void onDisable(){}
 	
 	private void configInit(){
-		config.addDefault("Options.requiredSignText","EasterEgg");
+		config.addDefault("Options.requiredSignText","&bEasterEgg");
 		config.addDefault("Options.easterEggSuccessMessage", "&aYou gained &3$%_AMOUNT_% &afor finding this Easter Egg!");
 		config.addDefault("Options.easterEggFailureMessage", "&aYou already found this Easter Egg!");
 		config.addDefault("Options.easterEggPlaceSuccessMessage", "&aSuccessfully made an easter egg sign that gives &3$%_AMOUNT_%");
