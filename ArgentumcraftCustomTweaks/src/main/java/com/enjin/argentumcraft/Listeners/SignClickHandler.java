@@ -27,11 +27,11 @@ public class SignClickHandler implements Listener{
 							int x = event.getClickedBlock().getX();
 							int y = event.getClickedBlock().getY();
 							int z = event.getClickedBlock().getZ();
-							if (Resources.listFileConfig.contains(event.getPlayer().getName()+x+"."+y+"."+z)){
+							if (!Resources.listFileConfig.contains(event.getPlayer().getName()+x+"."+y+"."+z)){
 								String amount = sign.getLine(1);
 								Resources.economy.depositPlayer(event.getPlayer(), Double.parseDouble(amount));
 								event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&',Resources.config.getString("Options.easterEggSuccessMessage").replaceAll("%_AMOUNT_%", amount)));
-								Resources.listFileConfig.addDefault(event.getPlayer().getName()+x+"."+y+"."+z, true);
+								Resources.listFileConfig.set(event.getPlayer().getName()+x+"."+y+"."+z, true);
 							}else{
 								event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&',Resources.config.getString("Options.easterEggFailureMessage")));
 							}

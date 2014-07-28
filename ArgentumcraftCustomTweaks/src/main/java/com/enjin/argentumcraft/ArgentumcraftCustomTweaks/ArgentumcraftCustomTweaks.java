@@ -1,8 +1,6 @@
 package com.enjin.argentumcraft.ArgentumcraftCustomTweaks;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 
 import net.milkbowl.vault.economy.Economy;
 
