@@ -41,7 +41,7 @@ public class ArgentumcraftCustomTweaks extends JavaPlugin{
 	public void onDisable(){}
 	
 	private void configInit(){
-		config.addDefault("Options.requiredSignText","&bEasterEgg");
+		config.addDefault("Options.requiredSignText","EasterEgg");
 		config.addDefault("Options.easterEggSuccessMessage", "&aYou gained &3$%_AMOUNT_% &afor finding this Easter Egg!");
 		config.addDefault("Options.easterEggFailureMessage", "&aYou already found this Easter Egg!");
 		config.addDefault("Options.easterEggPlaceSuccessMessage", "&aSuccessfully made an easter egg sign that gives &3$%_AMOUNT_%");

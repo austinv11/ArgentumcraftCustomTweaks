@@ -23,7 +23,7 @@ public class SignClickHandler implements Listener{
 				if (event.hasBlock()){
 					if (event.getClickedBlock().getState() instanceof Sign){
 						Sign sign = (Sign) event.getClickedBlock().getState();
-						if (sign.getLine(0).contains("["+Resources.config.getString("Options.requiredSignText")+"]")){
+						if (sign.getLine(0).contains("["+ChatColor.AQUA+Resources.config.getString("Options.requiredSignText")+ChatColor.RESET+"]")){
 							int x = event.getClickedBlock().getX();
 							int y = event.getClickedBlock().getY();
 							int z = event.getClickedBlock().getZ();
@@ -32,6 +32,11 @@ public class SignClickHandler implements Listener{
 								Resources.economy.depositPlayer(event.getPlayer(), Double.parseDouble(amount));
 								event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&',Resources.config.getString("Options.easterEggSuccessMessage").replaceAll("%_AMOUNT_%", amount)));
 								Resources.listFileConfig.set(event.getPlayer().getName()+x+"."+y+"."+z, true);
+								try{
+									Resources.listFileConfig.save(Resources.listFile);
+								}catch(Exception e){
+									e.printStackTrace();
+								}
 							}else{
 								event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&',Resources.config.getString("Options.easterEggFailureMessage")));
 							}
@@ -45,11 +50,11 @@ public class SignClickHandler implements Listener{
 	@EventHandler
 	public void onSignChange(SignChangeEvent event){
 		if (!event.isCancelled()){
-			if (event.getLine(0).contains("["+ChatColor.translateAlternateColorCodes('&',Resources.config.getString("Options.requiredSignText"))+"]")){
+			if (event.getLine(0).contains("["+Resources.config.getString("Options.requiredSignText")+"]")){
 				if (event.getPlayer().hasPermission("ArgentumcraftCustomTweaks.easterEggSignAbility")){
 					try{
 						Double.parseDouble(event.getLine(1));
-						event.setLine(0, "["+ChatColor.translateAlternateColorCodes('&',Resources.config.getString("Options.requiredSignText"))+ChatColor.RESET+"]");
+						event.setLine(0, "["+ChatColor.AQUA+Resources.config.getString("Options.requiredSignText")+ChatColor.RESET+"]");
 						event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&',Resources.config.getString("Options.easterEggPlaceSuccessMessage").replaceAll("%_AMOUNT_%", event.getLine(1))));
 					}catch (Exception e){
 						event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&',Resources.config.getString("Options.easterEggPlaceFailureMessage").replaceAll("%_PLAYER_%", event.getPlayer().getName())));
