@@ -26,15 +26,16 @@ public class ArgentumcraftCustomTweaks extends JavaPlugin{
 	
 	@Override
 	public void onEnable(){
-	configInit();
-	setupEconomy();
-	ItemStack freezeItem = new ItemStack(Material.SNOW_BALL);
-	ItemMeta im = freezeItem.getItemMeta();
-	im.setDisplayName(ChatColor.AQUA+"Freezeball");
-	freezeItem.setItemMeta(im);
-	new Resources(config, new File(getDataFolder(), "EasterEggTracker.yml"), this, economy, freezeItem, new File(getDataFolder(), "FreezeTracker.yml"));
-	new SignClickHandler();
-	new FreezeItemHandler();
+		configInit();
+		setupEconomy();
+		ItemStack freezeItem = new ItemStack(Material.SNOW_BALL);
+		ItemMeta im = freezeItem.getItemMeta();
+		im.setDisplayName(ChatColor.AQUA+"Freezeball");
+		freezeItem.setItemMeta(im);
+		new Resources(config, new File(getDataFolder(), "EasterEggTracker.yml"), this, economy, freezeItem, new File(getDataFolder(), "FreezeTracker.yml"));
+		new SignClickHandler();
+		new FreezeItemHandler();
+		new MythicDropsCraftingBridge();
 	}
 	
 	@Override
