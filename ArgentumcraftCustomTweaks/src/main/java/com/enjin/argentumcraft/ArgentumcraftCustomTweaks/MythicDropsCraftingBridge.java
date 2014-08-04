@@ -221,8 +221,8 @@ public class MythicDropsCraftingBridge implements Listener{
 									event.getMenu().closeMenu();
 									event.getPlayer().closeInventory();
 									event.getPlayer().updateInventory();
-									event.setCancelled(true);
 									event.getPlayer().sendMessage(ChatColor.GREEN+"Successfully added 1 socket!");
+									event.setCancelled(true);
 								}else{
 									event.getPlayer().sendMessage(ChatColor.RED+"Sorry, that item cannot receive a socket");
 								}
@@ -251,8 +251,8 @@ public class MythicDropsCraftingBridge implements Listener{
 									event.getMenu().closeMenu();
 									event.getPlayer().closeInventory();
 									event.getPlayer().updateInventory();
-									event.setCancelled(true);
 									event.getPlayer().sendMessage(ChatColor.GREEN+"Successfully added 2 sockets!");
+									event.setCancelled(true);
 								}else{
 									event.getPlayer().sendMessage(ChatColor.RED+"Sorry, that item cannot receive a socket");
 								}
@@ -284,8 +284,8 @@ public class MythicDropsCraftingBridge implements Listener{
 									event.getMenu().closeMenu();
 									event.getPlayer().closeInventory();
 									event.getPlayer().updateInventory();
-									event.setCancelled(true);
 									event.getPlayer().sendMessage(ChatColor.GREEN+"Successfully added 3 sockets!");
+									event.setCancelled(true);
 								}else{
 									event.getPlayer().sendMessage(ChatColor.RED+"Sorry, that item cannot receive a socket");
 								}
@@ -320,8 +320,8 @@ public class MythicDropsCraftingBridge implements Listener{
 									event.getMenu().closeMenu();
 									event.getPlayer().closeInventory();
 									event.getPlayer().updateInventory();
-									event.setCancelled(true);
 									event.getPlayer().sendMessage(ChatColor.GREEN+"Successfully added 4 sockets!");
+									event.setCancelled(true);
 								}else{
 									event.getPlayer().sendMessage(ChatColor.RED+"Sorry, that item cannot receive a socket");
 								}
