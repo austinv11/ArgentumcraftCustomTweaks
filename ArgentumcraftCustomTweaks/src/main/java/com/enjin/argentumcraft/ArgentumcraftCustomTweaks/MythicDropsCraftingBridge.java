@@ -135,7 +135,7 @@ public class MythicDropsCraftingBridge implements Listener{
 	@EventHandler
 	public void onInteract(PlayerInteractEvent event){
 		if (!event.isCancelled()){
-			//if (event.hasItem()){
+			if (event.getItem() != null){
 				if (event.getItem().isSimilar(socket)){
 					event.setCancelled(true);
 					if (event.getItem().getAmount() <= MAX_SOCKETS){
@@ -188,7 +188,7 @@ public class MythicDropsCraftingBridge implements Listener{
 						event.getPlayer().sendMessage(ChatColor.RED+"Sorry, you can't add that many sockets");
 					}
 				}
-			//}
+			}
 		}
 	}
 	
