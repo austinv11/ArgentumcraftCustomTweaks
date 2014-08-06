@@ -65,6 +65,7 @@ public class FxKillHandler implements Listener{
 			mob.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 100000000, 3));
 			mob.setCustomNameVisible(true);
 			mob.setHealth(mob.getHealth() + 20);
+			mob.setRemoveWhenFarAway(false);
 		}
 		//Bukkit.getPluginManager().getPlugin("GUIAPI").getLogger().info("spawned pandas");
 		for (int i = 0; i < NUMBER_OF_ZOMBIES; i++){
@@ -84,6 +85,7 @@ public class FxKillHandler implements Listener{
 			mob.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 100000000, 3));
 			mob.setCustomNameVisible(true);
 			mob.setHealth(mob.getHealth() + 20);
+			mob.setRemoveWhenFarAway(false);
 		}
 		//Bukkit.getPluginManager().getPlugin("GUIAPI").getLogger().info("spawned austins");
 	}
