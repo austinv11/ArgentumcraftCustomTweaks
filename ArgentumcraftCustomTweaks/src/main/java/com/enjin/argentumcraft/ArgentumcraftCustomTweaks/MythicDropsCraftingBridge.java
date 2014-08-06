@@ -13,7 +13,9 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.CraftItemEvent;
+import org.bukkit.event.inventory.InventoryAction;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -122,11 +124,15 @@ public class MythicDropsCraftingBridge implements Listener{
 	public void onCraft(CraftItemEvent event){
 		if (!event.isCancelled()){
 			if (event.getInventory().getResult().isSimilar(socket)){
-				Player player = (Player) event.getWhoClicked();
-				if (!(player.getLevel() >= (event.getInventory().getResult().getAmount()*10))){
-					event.setCancelled(true);
+				if (!(event.getClick() == ClickType.SHIFT_LEFT || event.getClick() == ClickType.SHIFT_RIGHT)){
+					Player player = (Player) event.getWhoClicked();
+					if (!(player.getLevel() >= (event.getInventory().getResult().getAmount()*10))){
+						event.setCancelled(true);
+					}else{
+						player.setLevel(player.getLevel()-(event.getInventory().getResult().getAmount()*10));
+					}
 				}else{
-					player.setLevel(player.getLevel()-(event.getInventory().getResult().getAmount()*10));
+					event.setCancelled(true);
 				}
 			}
 		}
@@ -218,9 +224,9 @@ public class MythicDropsCraftingBridge implements Listener{
 									newItem.setItemMeta(newMeta);
 									event.getPlayer().getInventory().setItem(event.getSlot(), newItem);
 									event.getPlayer().getInventory().setItem(event.getPlayer().getInventory().getHeldItemSlot(), null);
-									event.getMenu().closeMenu();
+									//event.getMenu().closeMenu();
 									event.getPlayer().closeInventory();
-									event.getPlayer().updateInventory();
+									//event.getPlayer().updateInventory();
 									event.getPlayer().sendMessage(ChatColor.GREEN+"Successfully added 1 socket!");
 									event.setCancelled(true);
 								}else{
@@ -248,9 +254,9 @@ public class MythicDropsCraftingBridge implements Listener{
 									newItem.setItemMeta(newMeta);
 									event.getPlayer().getInventory().setItem(event.getSlot(), newItem);
 									event.getPlayer().getInventory().setItem(event.getPlayer().getInventory().getHeldItemSlot(), null);
-									event.getMenu().closeMenu();
+									//event.getMenu().closeMenu();
 									event.getPlayer().closeInventory();
-									event.getPlayer().updateInventory();
+									//event.getPlayer().updateInventory();
 									event.getPlayer().sendMessage(ChatColor.GREEN+"Successfully added 2 sockets!");
 									event.setCancelled(true);
 								}else{
@@ -281,9 +287,9 @@ public class MythicDropsCraftingBridge implements Listener{
 									newItem.setItemMeta(newMeta);
 									event.getPlayer().getInventory().setItem(event.getSlot(), newItem);
 									event.getPlayer().getInventory().setItem(event.getPlayer().getInventory().getHeldItemSlot(), null);
-									event.getMenu().closeMenu();
+									//event.getMenu().closeMenu();
 									event.getPlayer().closeInventory();
-									event.getPlayer().updateInventory();
+									//event.getPlayer().updateInventory();
 									event.getPlayer().sendMessage(ChatColor.GREEN+"Successfully added 3 sockets!");
 									event.setCancelled(true);
 								}else{
@@ -317,9 +323,9 @@ public class MythicDropsCraftingBridge implements Listener{
 									newItem.setItemMeta(newMeta);
 									event.getPlayer().getInventory().setItem(event.getSlot(), newItem);
 									event.getPlayer().getInventory().setItem(event.getPlayer().getInventory().getHeldItemSlot(), null);
-									event.getMenu().closeMenu();
+									//event.getMenu().closeMenu();
 									event.getPlayer().closeInventory();
-									event.getPlayer().updateInventory();
+									//event.getPlayer().updateInventory();
 									event.getPlayer().sendMessage(ChatColor.GREEN+"Successfully added 4 sockets!");
 									event.setCancelled(true);
 								}else{
