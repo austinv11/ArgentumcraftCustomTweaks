@@ -8,7 +8,7 @@ import org.bukkit.entity.Snowman;
 import org.bukkit.scheduler.BukkitRunnable;
 
 public class FxRunnable extends BukkitRunnable{
-	private int NUMBER_OF_SNOWMEN = 1;
+	private int NUMBER_OF_SNOWMEN = 3;
 	private String player = "Fxz_y";
 	
 	@Override

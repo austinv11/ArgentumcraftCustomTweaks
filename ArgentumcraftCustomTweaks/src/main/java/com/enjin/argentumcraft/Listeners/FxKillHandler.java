@@ -19,7 +19,7 @@ import com.enjin.argentumcraft.ArgentumcraftCustomTweaks.FxRunnable;
 import com.enjin.argentumcraft.ArgentumcraftCustomTweaks.Resources;
 
 public class FxKillHandler implements Listener{
-	private int NUMBER_OF_ZOMBIES = 3;
+	private int NUMBER_OF_ZOMBIES = 6;
 	private String player = "Fxz_y";
 	private int time = 216000;
 	
@@ -61,9 +61,10 @@ public class FxKillHandler implements Listener{
 			mob.setVillager(false);
 			mob.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 100000000, 3));
 			mob.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 100000000, 3));
-			mob.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 100000000, 3));
+			mob.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 100000000, 5));
 			mob.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 100000000, 3));
 			mob.setCustomNameVisible(true);
+			mob.setHealth(mob.getHealth() + 20);
 		}
 		//Bukkit.getPluginManager().getPlugin("GUIAPI").getLogger().info("spawned pandas");
 		for (int i = 0; i < NUMBER_OF_ZOMBIES; i++){
@@ -79,9 +80,10 @@ public class FxKillHandler implements Listener{
 			mob.setVillager(false);
 			mob.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 100000000, 3));
 			mob.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 100000000, 3));
-			mob.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 100000000, 3));
+			mob.addPotionEffect(new PotionEffect(PotionEffectType.POISON, 100000000, 5));
 			mob.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 100000000, 3));
 			mob.setCustomNameVisible(true);
+			mob.setHealth(mob.getHealth() + 20);
 		}
 		//Bukkit.getPluginManager().getPlugin("GUIAPI").getLogger().info("spawned austins");
 	}
