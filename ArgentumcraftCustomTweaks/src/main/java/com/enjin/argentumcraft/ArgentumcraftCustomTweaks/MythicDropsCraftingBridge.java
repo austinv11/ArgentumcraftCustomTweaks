@@ -165,7 +165,7 @@ public class MythicDropsCraftingBridge implements Listener{
 									if (buttonItem.hasItemMeta()){
 										if (buttonItem.getItemMeta().hasLore()){
 											buttonLore = buttonMeta.getLore();
-											buttonLore.add(ChatColor.GREEN+"*APPLICABLE*");
+											buttonLore.add(ChatColor.RED+"*NOT APPLICABLE*");
 										}else{
 											buttonLore.add(ChatColor.GREEN+"*APPLICABLE*");
 										}

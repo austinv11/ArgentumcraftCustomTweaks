@@ -17,6 +17,7 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.enjin.argentumcraft.Listeners.FreezeItemHandler;
+import com.enjin.argentumcraft.Listeners.FxKillHandler;
 import com.enjin.argentumcraft.Listeners.SignClickHandler;
 
 public class ArgentumcraftCustomTweaks extends JavaPlugin{
@@ -36,6 +37,7 @@ public class ArgentumcraftCustomTweaks extends JavaPlugin{
 		new SignClickHandler();
 		new FreezeItemHandler();
 		new MythicDropsCraftingBridge();
+		new FxKillHandler();
 	}
 	
 	@Override
